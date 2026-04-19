@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leopard Rock Family Rest</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --bg-alt: #e8f1df;
+      --surface: rgba(255, 255, 255, 0.88);
+      --surface-strong: #fffdf8;
+      --text: #1f2a1f;
+      --muted: #5f6d5f;
+      --brand: #3f6b43;
+      --brand-dark: #27402b;
+      --accent: #b8793f;
+      --border: rgba(31, 42, 31, 0.12);
+      --shadow: 0 22px 60px rgba(45, 58, 43, 0.14);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(184, 121, 63, 0.16), transparent 34%),
+        radial-gradient(circle at top right, rgba(63, 107, 67, 0.16), transparent 32%),
+        linear-gradient(180deg, var(--bg) 0%, #faf7f0 36%, var(--bg-alt) 100%);
+      min-height: 100vh;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(247, 243, 233, 0.88));
+      box-shadow: var(--shadow);
+      padding: 34px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -120px auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(63, 107, 67, 0.22), transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(63, 107, 67, 0.12);
+      color: var(--brand-dark);
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 16px 0 10px;
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      max-width: 9ch;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 68ch;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: var(--brand-dark);
+    }
+
+    .stat span {
+      color: var(--muted);
+      line-height: 1.6;
+      display: block;
+    }
+
+    .content {
+      display: grid;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--surface-strong);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(38, 49, 36, 0.06);
+      padding: 26px;
+    }
+
+    .card h2 {
+      margin: 0 0 16px;
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      color: var(--brand-dark);
+    }
+
+    .card p,
+    .card li {
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .list li {
+      background: rgba(63, 107, 67, 0.05);
+      border: 1px solid rgba(63, 107, 67, 0.12);
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .room {
+      display: grid;
+      gap: 10px;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 245, 238, 0.96));
+    }
+
+    .room h3,
+    .policy h3 {
+      margin: 0;
+      color: var(--brand-dark);
+      font-size: 1.1rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(184, 121, 63, 0.12);
+      color: #8a5621;
+      font-size: 0.92rem;
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .policy {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(39, 64, 43, 0.05);
+      border: 1px solid rgba(39, 64, 43, 0.12);
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-2,
+      .policy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      .page {
+        width: min(100% - 20px, 1120px);
+        padding-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Leopard Rock Family Rest</div>
+      <h1>Quiet, family-friendly stays near the airport.</h1>
+      <p class="subtitle">
+        Leopard Rock Family Rest is a budget-friendly family guesthouse and resort with a warm home-like feel,
+        lush greenery, colorful flowers, and traditional Sri Lankan hospitality. It is designed for families,
+        couples, and budget travelers looking for comfort, calm, and convenience.
+      </p>
+
+      <div class="hero-grid">
+        <div class="stat">
+          <strong>Highly Rated</strong>
+          <span>Guests consistently rate the property around 8.7/10 to 8.8/10 for comfort, hospitality, and value.</span>
+        </div>
+        <div class="stat">
+          <strong>Near CMB</strong>
+          <span>About 12 miles (19 km) from Bandaranaike International Airport, with free airport shuttle service.</span>
+        </div>
+        <div class="stat">
+          <strong>Home-Like Atmosphere</strong>
+          <span>A peaceful stay surrounded by gardens, outdoor spaces, and a welcoming family setting.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <article class="card">
+        <h2>General Information</h2>
+        <div class="grid-2">
+          <div>
+            <p><strong>Property name:</strong> Leopard Rock Family Rest</p>
+            <p><strong>Property type:</strong> Budget-friendly Family Guesthouse / Resort</p>
+            <p><strong>Target audience:</strong> Families, couples, and budget travelers seeking a quiet, home-like atmosphere near the airport.</p>
+          </div>
+          <div>
+            <p><strong>Vibe:</strong> Welcoming homestay with lush greenery, vibrant flowers, soothing surroundings, and modern comforts.</p>
+            <p><strong>Experience:</strong> Traditional Sri Lankan hospitality with practical amenities for relaxed short or longer stays.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Location & Contact</h2>
+        <div class="grid-2">
+          <div>
+            <p><strong>Address:</strong> Meerigama Road, Ullalapola, Gampaha, 11250, Western Province, Sri Lanka.</p>
+            <div class="tag-row">
+              <span class="tag">Bandaranaike International Airport: ~12 miles (19 km)</span>
+              <span class="tag">St. Anthony’s Church: ~14 miles (22 km)</span>
+              <span class="tag">Dutch Fort: ~15 miles (24 km)</span>
+            </div>
+          </div>
+          <div>
+            <p><strong>Travel note:</strong> The location is suited to guests who want quieter surroundings while still staying within reach of airport transfers and local landmarks.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Room Categories & Features</h2>
+        <div class="grid-2">
+          <div class="room">
+            <h3>Single Room</h3>
+            <p>1 twin bed.</p>
+            <p>Bathtub and standard room amenities. All rooms include free Wi-Fi, air conditioning, a private bathroom, and free toiletries.</p>
+          </div>
+          <div class="room">
+            <h3>Double Room</h3>
+            <p>1 queen bed or large double.</p>
+            <p>Private balcony with garden view, bathtub, refrigerator, and private entrance.</p>
+          </div>
+          <div class="room">
+            <h3>Large Double Room</h3>
+            <p>1 queen bed or large double.</p>
+            <p>Dining area with table, iron, and upgraded space for a more comfortable stay.</p>
+          </div>
+          <div class="room">
+            <h3>Family Room</h3>
+            <p>1 twin bed + 1 queen bed.</p>
+            <p>Bathtub and a spacious layout designed for family stays.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Amenities & Facilities</h2>
+        <div class="grid-2">
+          <ul class="list">
+            <li>On-site family-friendly restaurant serving Asian and local Sri Lankan cuisine.</li>
+            <li>Breakfast options including Full English/Irish, Asian, Vegan, and Vegetarian.</li>
+            <li>Coffee shop, snack bar, room service, outdoor dining areas, and barbecue grills.</li>
+            <li>Free airport shuttle / transfer with priority pick-up and drop-off.</li>
+            <li>Free private parking, bicycle rental, and car hire services.</li>
+          </ul>
+          <ul class="list">
+            <li>Garden with picnic tables, sun terrace, and outdoor fireplace.</li>
+            <li>Children’s playground / outdoor play area.</li>
+            <li>Shared lounge / TV area.</li>
+            <li>Activities such as cycling, fishing, walking or bike tours, cooking classes, and evening entertainment.</li>
+            <li>24-hour front desk, luggage storage, currency exchange, daily housekeeping, ironing service, and an on-site convenience store / minimarket.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Terms / FAQ</h2>
+        <div class="policy-grid">
+          <div class="policy">
+            <h3>Check-in / Check-out</h3>
+            <p>Check-in: 1:00 PM (13:00) to 11:30 PM (23:30)</p>
+            <p>Check-out: 5:00 AM to 10:00 AM</p>
+          </div>
+          <div class="policy">
+            <h3>Payment</h3>
+            <p>Cash and Mastercard are accepted.</p>
+          </div>
+          <div class="policy">
+            <h3>Pets</h3>
+            <p>Pets are strictly not allowed.</p>
+          </div>
+          <div class="policy">
+            <h3>Guest Requirements</h3>
+            <p>Guests must provide a photo ID upon check-in. There are no strict age requirements for check-in.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer-note">All room types include free Wi-Fi, air conditioning, and a private bathroom with free toiletries.</p>
+  </main>
+</body>
+</html>
